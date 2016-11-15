@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="src/css/stock.monitor.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+
+    <body ng-app="StockApp" ng-controller="stockController">
+
+        <div class="header-main">
+            <h3>Real Time OHLC Feed Demo</h3>
+        </div>
+        <div ng-cloak class="container">
+            <my-page-Loader ng-if="mypageloading"></my-page-Loader>
+            <p ng-show="error !== 'undefined' && error !== 'null' && error !== ''" ng-if="error" class="bg-danger text-center error-box" ><i class="fa fa-warning"></i> <span >ERROR: {{error}}</span></p>
+            <div 
+                data-ac-chart="'area'" 
+                data-ac-data="data" 
+                data-ac-config="config" 
+                class="chart">
+            </div>
+
+            <div class="stock-table">
+                <table class="table  table-bordered header-fixed ">
+                    <thead>
+                        <tr ng-class='{customLarge : data.data.length < 10 , custom: data.data.length > 10}' >
+                            <th >Time</th>
+                            <th>Open</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Close</th>
+                            <th>Volume</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr ng-class='{blue : newStockTime == (stock.x), white: newStockTime != (stock.x)}' ng-repeat="stock in data.data| orderBy:getFilter()">
+                            <td >{{stock.date}}</td>
+                            <td >{{stock.open}}</td>
+                            <td>{{stock.high}}</td>
+                            <td>{{stock.low}}</td>
+                            <td>{{stock.close}}</td>
+                            <td>{{stock.volume}}</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+                <div class="mt">
+                    <div class="dropup" style="display: inline-flex;" >
+
+                        <button type="button" class="btn btn-primary mr"  ng-click="getHistory()">Get Historical</button>
+                        <button type="button" class="btn btn-primary mr"   ng-click="sub()">Subscribe</button>
+                        <button type="button" class="btn btn-primary mr"   ng-click="unsub()">Unsubscribe</button>
+
+                        <div class="dropup " >
+                            <button type="button" class="btn btn-primary " data-toggle="dropdown" style="margin-right: 15px"  >Sort {{sortEntity}}</button>
+                            <ul class="dropdown-menu dropup" role="menu">
+                                <li><a href="#" ng-click="changeFilter(0)">Time (Down)</a></li>
+                                <li><a href="#" ng-click="changeFilter(1)">Time (Up)</a></li>
+                                <li><a href="#" ng-click="changeFilter(2)">Close (Down)</a></li>
+                                <li><a href="#" ng-click="changeFilter(3)">Close (Up)</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <footer class="footer-main"></footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.4.8/angular-route.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.3.11/d3.js"></script>
+        <script src="src/js/angular-charts.js"></script>
+        <script src="src/js/socket.io.js"></script>
+        <script src="src/js/stock.controller.js"></script>
+
+    </body>
+</html>

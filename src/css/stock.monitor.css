@@ -1,0 +1,114 @@
+.header-main {
+    padding: 0.2em 0em 0.2em 0em;
+    background-color: #0c86ef;
+    position: absolute;
+    z-index: 10000;
+    width: 100%;text-align: center;
+}
+
+
+
+table {
+    width: 100%;
+}
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+thead th {
+    height: 30px;
+
+    /*text-align: left;*/
+}
+
+tbody {
+    height: 400px;
+    overflow-y: auto;
+}
+
+thead {
+    /* fallback */
+}
+
+
+tbody td {
+    width: 16.66%;
+    float: left;
+    text-align: center;
+}
+
+
+thead th {
+    width: 16.1%;
+    float: left;
+    text-align: center;
+    background-color: #0c86ef;
+}
+.custom th {
+     width: 16.1%;
+}
+
+.customLarge th {
+     width: 16.66%;
+}
+
+.error-box {
+    margin-top: 60px;
+    position: fixed;
+    width: 90%;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.stock-table {
+    margin-left: 600px;
+    position: absolute;
+    top: 100px;
+    margin-right: 10px;
+    height: 400px;
+    width: 550px;
+}
+
+.mt {
+    margin-top: 25px;
+}
+
+.mr {
+    margin-right: 15px;
+}
+
+.footer-main {
+    height: 60px;
+    background-color: #0c86ef;
+    height: 20px;
+}
+
+#loadingif {
+    left : 50%;
+    top : 50%;
+    position : absolute;
+    z-index : 101;
+    width : 32px;
+    height : 32px;
+    margin-left : -16px;
+    margin-top : -16px;
+}
+.chart {
+    margin-top: 100px;
+    width: 600px;
+    height: 480px;
+}
+
+.blue {
+   background-color: #d9edf7; 
+}
+
+.white {
+    background-color: #FFF; 
+}
